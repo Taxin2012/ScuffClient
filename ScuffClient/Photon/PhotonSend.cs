@@ -10,7 +10,7 @@ namespace ScuffClient.Photon
         public static void RaiseEvent(byte eventCode, object eventData, RaiseEventOptions eventOptions, SendOptions options)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();
-            parameters[244] = eventCode;
+            parameters[ParameterCodes.EventCode] = eventCode;
             //check for correct type for eventdata relative to eventcode or else dont send (due to bans)
             if (eventData != null && CheckForCorrectType(eventCode, eventData))
                 parameters[ParameterCodes.CustomData] = eventData;

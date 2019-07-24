@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using VRC;
 
 namespace ScuffClient
 {
@@ -14,7 +15,7 @@ namespace ScuffClient
 
 
 
-
+        public static int GetPhotonId(Player p) => p.GetInstigatorId().GetValueOrDefault();
         public static string NewDeviceID()
         {
             return KeyedHashAlgorithm.Create().ComputeHash(Encoding.UTF8.GetBytes(string.Format("{0}D-{1}{2}-{3}{4}-{5}{6}-72-5A", new object[]

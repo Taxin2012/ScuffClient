@@ -8,6 +8,7 @@ namespace ScuffClient.Photon
     public class ParameterCodes
     {
         public const byte Broadcast = 250;
+        public const byte EventCode = 244;
         public const byte CustomData = 245;
         public const byte Properties = 251;
         public const byte GameProperties = 248;

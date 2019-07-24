@@ -72,6 +72,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="Menu\AntiMenu.cs" />
     <Compile Include="Menu\TargetPlayerMenu.cs" />
+    <Compile Include="Misc\Exploits.cs" />
     <Compile Include="Patches\Patcher.cs" />
     <Compile Include="Photon\ActorProperties.cs" />
     <Compile Include="Photon\EventType.cs" />

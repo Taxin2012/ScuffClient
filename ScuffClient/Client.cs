@@ -5,6 +5,7 @@ using ScuffClient.Patches;
 using ScuffClient.Menu;
 using UnityEngine.UI;
 using UnityEngine;
+using ScuffClient.Misc;
 
 namespace ScuffClient
 {
@@ -18,7 +19,8 @@ namespace ScuffClient
         }
         public void Update()
         {
-
+            if (Event.current.shift && Input.GetKeyDown(KeyCode.L))
+                Exploits.TriggerIndexOutOfRange(VRC.PlayerManager.GetPlayer(VRC.Core.APIUser.CurrentUser.id));
         }
     }
 }
