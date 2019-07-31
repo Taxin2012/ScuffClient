@@ -8,6 +8,7 @@ using UnityEngine;
 using ScuffClient.Reflections;
 using System.Collections.Generic;
 using ScuffClient.Photon;
+using ScuffClient.Misc;
 
 namespace ScuffClient.Patches
 {
@@ -38,7 +39,7 @@ namespace ScuffClient.Patches
             }
             catch
             {
-                Console.WriteLine("Exception caught while patching");
+                Console.WriteLine("[ScuffClient]: Exception caught while patching");
             }
         }
         private static bool NoBlock(ref bool __result, ref ModerationManager __instance, ref string __0)
@@ -74,9 +75,10 @@ namespace ScuffClient.Patches
 
         private static bool RandomHwid(string __result)
         {
-            __result = Variables.NewDeviceID();
+            __result = Functions.NewDeviceID();
             return true;
         }
+
         private static bool SteamSpoof(byte __0, Dictionary<byte, object> __1)
         {
             void RemoveSteamId(byte key)
