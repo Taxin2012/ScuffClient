@@ -73,6 +73,7 @@
     <Compile Include="Menu\AntiMenu.cs" />
     <Compile Include="Menu\TargetPlayerMenu.cs" />
     <Compile Include="Misc\Exploits.cs" />
+    <Compile Include="Misc\Functions.cs" />
     <Compile Include="Patches\Patcher.cs" />
     <Compile Include="Photon\ActorProperties.cs" />
     <Compile Include="Photon\EventType.cs" />
@@ -84,7 +85,7 @@
     <Compile Include="Reflections\MiscReflections.cs" />
     <Compile Include="Reflections\PhotonReflections.cs" />
     <Compile Include="Reflections\PlayerReflections.cs" />
-    <Compile Include="Variables.cs" />
+    <Compile Include="Misc\Variables.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
