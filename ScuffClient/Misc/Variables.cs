@@ -10,5 +10,6 @@ namespace ScuffClient.Misc
     public class Variables
     {
         public static bool antiPortal;
+        public static float speedHackValue = 1f;
     }
 }
