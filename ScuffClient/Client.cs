@@ -6,6 +6,7 @@ using ScuffClient.Menu;
 using UnityEngine.UI;
 using UnityEngine;
 using ScuffClient.Misc;
+using VRCSDK2;
 
 namespace ScuffClient
 {
@@ -15,12 +16,13 @@ namespace ScuffClient
         public void Start()
         {
             base.gameObject.AddComponent<AntiMenu>();
+            base.gameObject.AddComponent<TargetPlayerMenu>();
             Patcher.CreatePatches();
         }
         public void Update()
         {
             if (Event.current.shift && Input.GetKeyDown(KeyCode.L))
-                Exploits.TriggerIndexOutOfRange(VRC.PlayerManager.GetPlayer(VRC.Core.APIUser.CurrentUser.id));
+                Exploits.DropPortal();
         }
     }
 }
