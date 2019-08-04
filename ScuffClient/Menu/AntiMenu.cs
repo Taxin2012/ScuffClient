@@ -48,6 +48,7 @@ namespace ScuffClient.Menu
 
             cameraMenu.transform.Find("PhotoMode").gameObject.SetActive(true);
             cameraMenu.transform.Find("VideoMode").gameObject.SetActive(true);
+            cameraMenu.transform.Find("DisableCamera").gameObject.SetActive(true);
         }
         private void CreateAntiPortalButton()
         {
