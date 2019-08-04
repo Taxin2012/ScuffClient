@@ -17,12 +17,15 @@ namespace ScuffClient
         {
             base.gameObject.AddComponent<AntiMenu>();
             base.gameObject.AddComponent<TargetPlayerMenu>();
+            base.gameObject.AddComponent<Cheats>();
             Patcher.CreatePatches();
         }
         public void Update()
         {
             if (Event.current.shift && Input.GetKeyDown(KeyCode.L))
                 Exploits.DropPortal();
+            if (Event.current.shift && Input.GetKeyDown(KeyCode.Alpha1))
+                base.gameObject.GetComponent<Cheats>().ToggleFly();
         }
     }
 }
