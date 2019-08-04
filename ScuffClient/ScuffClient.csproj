@@ -55,6 +55,10 @@
     <Reference Include="UnityEngine.IMGUIModule">
       <HintPath>D:\SteamLibrary\SteamApps\common\VRChat\VRChat_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\SteamLibrary\SteamApps\common\VRChat\VRChat_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>D:\SteamLibrary\SteamApps\common\VRChat\VRChat_Data\Managed\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -72,6 +76,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="Menu\AntiMenu.cs" />
     <Compile Include="Menu\TargetPlayerMenu.cs" />
+    <Compile Include="Misc\Cheats.cs" />
     <Compile Include="Misc\Exploits.cs" />
     <Compile Include="Misc\Functions.cs" />
     <Compile Include="Patches\Patcher.cs" />
@@ -86,6 +91,7 @@
     <Compile Include="Reflections\PhotonReflections.cs" />
     <Compile Include="Reflections\PlayerReflections.cs" />
     <Compile Include="Misc\Variables.cs" />
+    <Compile Include="Updater\UpdateDLL.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
