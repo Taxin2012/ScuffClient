@@ -45,17 +45,20 @@ namespace ScuffClient.Misc
         {
             if(isFlying)
             {
-                this.originalGravity = Physics.gravity;
+                originalGravity = Physics.gravity;
                 Physics.gravity = Vector3.zero;
 
                 Vector3 pos = VRCPlayer.Instance.transform.position;
 
-                if(Input.GetKeyDown(KeyCode.Q))
-                { }
+                if(Input.GetKey(KeyCode.Q))
+                    VRCPlayer.Instance.transform.position = new Vector3(pos.x, pos.y - (12 * Variables.speedHackValue) * Time.deltaTime, pos.z);
+                
+                if(Input.GetKey(KeyCode.E))
+                    VRCPlayer.Instance.transform.position = new Vector3(pos.x, pos.y + (12 * Variables.speedHackValue) * Time.deltaTime, pos.z);
             }
             if(!isFlying)
             {
-                Physics.gravity = this.originalGravity;
+                Physics.gravity = originalGravity;
                 controller.strafeSpeed = 2f;
                 controller.walkSpeed = 2f;
                 controller.runSpeed = 4f;
