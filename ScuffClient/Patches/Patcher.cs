@@ -81,6 +81,7 @@ namespace ScuffClient.Patches
 
         private static bool SteamSpoof(byte __0, Dictionary<byte, object> __1)
         {
+            //ty azami, your version was cleaner than mine xd
             void RemoveSteamId(byte key)
             {
                 Hashtable data = (Hashtable)__1[key];
