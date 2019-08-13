@@ -7,7 +7,7 @@ namespace ScuffClient.Photon
 {
     public class PhotonSend
     {
-        public static void RaiseEvent(byte eventCode, object eventData, RaiseEventOptions eventOptions, SendOptions options)
+        public static void RaiseEvent(byte eventCode, object eventData, SendOptions options, RaiseEventOptions eventOptions = null)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();
             parameters[ParameterCodes.EventCode] = eventCode;
@@ -26,7 +26,7 @@ namespace ScuffClient.Photon
                     }));
                 return;
             }
-            if(eventOptions.TargetActors != null)
+            if(eventOptions != null && eventOptions.TargetActors != null)
                 parameters[ParameterCodes.Targets] = eventOptions.TargetActors;
 
             PhotonReflections.SendOperation(OpCodes.RaiseEvent, parameters, options);
@@ -84,8 +84,11 @@ namespace ScuffClient.Photon
             if (evCode == EventType.SendSerialize && type is object[])
                 return true;
 
-            if (evCode == EventType.SendPosition)
-                return false;
+            if (evCode == EventType.SendPosition && type is Hashtable)
+                return true;
+
+            if (evCode == EventType.SendTest && type is object[])
+                return true;
 
             return false;
         }
@@ -94,12 +97,19 @@ namespace ScuffClient.Photon
         {
             if (evCode == EventType.SendVoice)
                 return "byte[]";
+
             if (evCode == EventType.SendEvent)
                 return "VRC_EventLog";
+
             if (evCode == EventType.SendSerialize)
-                return "unknown";
+                return "object[]";
+
             if (evCode == EventType.SendPosition)
-                return "unknown";
+                return "Hashtable";
+
+            if (evCode == EventType.SendTest)
+                return "object[]";
+
             return "unknown";
         }
     }
