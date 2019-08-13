@@ -87,6 +87,7 @@
     <Compile Include="Misc\Cheats.cs" />
     <Compile Include="Misc\Exploits.cs" />
     <Compile Include="Misc\Functions.cs" />
+    <Compile Include="Misc\SpyCamera.cs" />
     <Compile Include="Patches\Patcher.cs" />
     <Compile Include="Photon\ActorProperties.cs" />
     <Compile Include="Photon\EventType.cs" />
