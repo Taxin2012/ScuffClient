@@ -36,12 +36,20 @@ namespace ScuffClient.Patches
                 instance.Patch(typeof(API).GetMethod("get_DeviceID"), FindPatch("RandomHwid"), null, null);
                 instance.Patch(typeof(PortalTrigger).GetMethod("OnTriggerEnter", BindingFlags.Instance | BindingFlags.NonPublic), FindPatch("AntiPortalPatch"), null, null);
                 instance.Patch(typeof(PhotonPeer).GetMethod("SendOperation", BindingFlags.Instance | BindingFlags.Public), FindPatch("SteamSpoof"), null, null);
+                instance.Patch(typeof(PhotonPeer).GetMethod("SendOperation", BindingFlags.Instance | BindingFlags.Public), FindPatch("GetSendOperationData"), null, null);
+                instance.Patch(typeof(USpeakPhotonSender3D).GetMethod("OnEvent", BindingFlags.Instance | BindingFlags.Public), FindPatch("LogEvent"), null, null);
             }
-            catch
+            catch(Exception e)
             {
-                Console.WriteLine("[ScuffClient]: Exception caught while patching");
+                Console.WriteLine("[ScuffClient]: Exception caught while patching " + e);
             }
         }
+        private static bool ConnectData(string __0, string __1)
+        {
+            Console.WriteLine(__0 + " " + __1);
+            return true;
+        }
+
         private static bool NoBlock(ref bool __result, ref ModerationManager __instance, ref string __0)
         {
             Player sender = PlayerManager.GetPlayer(__0);
@@ -105,6 +113,15 @@ namespace ScuffClient.Patches
             return true;
         }
 
+        private static bool GetSendOperationData(byte __0, Dictionary<byte, object> __1, SendOptions __2)
+        {
+            return true;
+        }
+
+        private static bool LogEvent(EventData __0)
+        {
+            return true;
+        }
 
         private static HarmonyMethod FindPatch(string method)
         {
