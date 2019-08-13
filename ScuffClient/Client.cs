@@ -18,6 +18,7 @@ namespace ScuffClient
             base.gameObject.AddComponent<AntiMenu>();
             base.gameObject.AddComponent<TargetPlayerMenu>();
             base.gameObject.AddComponent<Cheats>();
+            base.gameObject.AddComponent<SpyCamera>();
             Patcher.CreatePatches();
         }
         public void Update()
