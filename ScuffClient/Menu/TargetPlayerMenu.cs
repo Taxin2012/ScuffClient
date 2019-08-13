@@ -14,6 +14,7 @@ namespace ScuffClient.Menu
     {
         private MethodInfo m_QuickMenuInstance;
         private FieldInfo f_SelectedUser;
+        private static Color themeColor = new Color(1f, 0f, 1f);
         private QuickMenu menu;
         private Player selectedPlayer;
         private VRCPlayer selectedVRCPlayer;
@@ -52,12 +53,14 @@ namespace ScuffClient.Menu
         {
             logoutButton = GameObject.Find("UserInteractMenu").transform.Find("ForceLogoutButton").gameObject;
             ColorBlock logoutColor = portalButton.GetComponent<Button>().colors;
-            logoutColor.normalColor = new Color(1f, 0f, 1f, 0.5f);
-            logoutColor.highlightedColor = new Color(1f, 0f, 1f, 1f);
-            logoutColor.pressedColor = new Color(1f, 0f, 1f);
+            logoutColor.normalColor = themeColor + new Color(0f, 0f, 0f, 0.5f);
+            logoutColor.highlightedColor = themeColor + new Color(0f, 0f, 0f, 1f);
+            logoutColor.pressedColor = themeColor;
             logoutButton.SetActive(true);
             logoutButton.GetComponentInChildren<Text>().text = "Logout";
             logoutButton.GetComponent<Button>().colors = logoutColor;
+            //disable persistent button
+            logoutButton.GetComponent<Button>().onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
             logoutButton.GetComponent<Button>().onClick.RemoveAllListeners();
             logoutButton.GetComponent<Button>().onClick.AddListener(delegate ()
             {
@@ -69,12 +72,14 @@ namespace ScuffClient.Menu
         {
             portalButton = GameObject.Find("UserInteractMenu").transform.Find("BanButton").gameObject;
             ColorBlock portalColor = portalButton.GetComponent<Button>().colors;
-            portalColor.normalColor = new Color(0f, 1f, 0f, 0.5f);
-            portalColor.highlightedColor = new Color(0f, 1f, 0f, 1f);
-            portalColor.pressedColor = new Color(0f, 1f, 0f);
+            portalColor.normalColor = themeColor + new Color(0f, 0f, 0f, 0.5f);
+            portalColor.highlightedColor = themeColor + new Color(0f, 0f, 0f, 1f);
+            portalColor.pressedColor = themeColor;
             portalButton.SetActive(true);
             portalButton.GetComponentInChildren<Text>().text = "Portal";
             portalButton.GetComponent<Button>().colors = portalColor;
+            //disable persistent button
+            portalButton.GetComponent<Button>().onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
             portalButton.GetComponent<Button>().onClick.RemoveAllListeners();
             portalButton.GetComponent<Button>().onClick.AddListener(delegate ()
             {
@@ -86,12 +91,14 @@ namespace ScuffClient.Menu
         {
             teleportButton = GameObject.Find("UserInteractMenu").transform.Find("KickButton").gameObject;
             ColorBlock teleportColor = teleportButton.GetComponent<Button>().colors;
-            teleportColor.normalColor = new Color(0f, 1f, 1f, 0.5f);
-            teleportColor.highlightedColor = new Color(0f, 1f, 1f, 1f);
-            teleportColor.pressedColor = new Color(0f, 1f, 1f);
+            teleportColor.normalColor = themeColor + new Color(0f, 0f, 0f, 0.5f);
+            teleportColor.highlightedColor = themeColor + new Color(0f, 0f, 0f, 0.5f);
+            teleportColor.pressedColor = themeColor;
             teleportButton.SetActive(true);
             teleportButton.GetComponentInChildren<Text>().text = "Teleport";
             teleportButton.GetComponent<Button>().colors = teleportColor;
+            //disable persistent button
+            teleportButton.GetComponent<Button>().onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
             teleportButton.GetComponent<Button>().onClick.RemoveAllListeners();
             teleportButton.GetComponent<Button>().onClick.AddListener(delegate ()
             {
@@ -105,12 +112,14 @@ namespace ScuffClient.Menu
             {
                 cloneButton = GameObject.Find("UserInteractMenu").transform.Find("WarnButton").gameObject;
                 ColorBlock publicColor = portalButton.GetComponent<Button>().colors;
-                publicColor.normalColor = new Color(0f, 1f, 0f, 0.5f);
-                publicColor.highlightedColor = new Color(0f, 1f, 0f, 1f);
-                publicColor.pressedColor = new Color(0f, 1f, 1f);
+                publicColor.normalColor = themeColor + new Color(0f, 0f, 0f, 0.5f);
+                publicColor.highlightedColor = themeColor + new Color(0f, 0f, 0f, 1f);
+                publicColor.pressedColor = themeColor;
                 cloneButton.SetActive(true);
                 cloneButton.GetComponentInChildren<Text>().text = "Yoink";
                 cloneButton.GetComponent<Button>().colors = publicColor;
+                //disable persistent button
+                cloneButton.GetComponent<Button>().onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
                 cloneButton.GetComponent<Button>().onClick.RemoveAllListeners();
                 cloneButton.GetComponent<Button>().onClick.AddListener(delegate ()
                 {
