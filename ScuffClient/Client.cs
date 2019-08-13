@@ -22,10 +22,11 @@ namespace ScuffClient
         }
         public void Update()
         {
-            if (Event.current.shift && Input.GetKeyDown(KeyCode.L))
+            if (Event.current.shift && Input.GetKeyDown(KeyCode.P))
                 Exploits.DropPortal();
-            if (Event.current.shift && Input.GetKeyDown(KeyCode.Alpha1))
-                base.gameObject.GetComponent<Cheats>().ToggleFly();
+
+            if (Event.current.shift && Input.GetKeyDown(KeyCode.L))
+                Exploits.TriggerIndexOutOfRange();
         }
     }
 }
