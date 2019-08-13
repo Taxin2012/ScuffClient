@@ -29,5 +29,10 @@ namespace ScuffClient.Misc
                 return b.ToString("x2");
             }).Aggregate((string x, string y) => x + y);
         }
+
+        public static byte[] ExploitData(bool indexExploit)
+        {
+            return indexExploit ? new byte[0] : new byte[1950];
+        }
     }
 }
