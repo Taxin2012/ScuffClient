@@ -10,8 +10,9 @@ namespace ScuffClient.Misc
     public class SpyCamera : MonoBehaviour
     {
         private static bool isCameraActive() => MiscReflections.GetCameraMode() == 2;
-        private float movSpeed = 4f;
-        private float rotSpeed = 15f;
+        private static UserCameraController cam = UserCameraController.Instance;
+        private static float movSpeed = 4f;
+        private static float rotSpeed = 15f;
 
         public void Update()
         {
@@ -19,7 +20,6 @@ namespace ScuffClient.Misc
             {
                 if (isCameraActive())
                 {
-                    UserCameraController cam = UserCameraController.Instance;
                     cam.transform.localRotation = Quaternion.identity; //Reset to fix rotation "bug"
                     cam.transform.localPosition = Vector3.zero; //Reset to fix rotation "bug"
                     MiscReflections.SetCameraMode(0);
@@ -28,7 +28,6 @@ namespace ScuffClient.Misc
             }
             if (isCameraActive())
             {
-                UserCameraController cam = UserCameraController.Instance;
                 if (Input.GetKey(KeyCode.UpArrow))
                 {
                     cam.transform.Translate(Vector3.forward * (Time.deltaTime * movSpeed), Space.Self);
