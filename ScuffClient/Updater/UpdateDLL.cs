@@ -7,6 +7,6 @@ namespace ScuffClient.Updater
 {
     public class UpdateDLL
     {
-
+        
     }
 }
