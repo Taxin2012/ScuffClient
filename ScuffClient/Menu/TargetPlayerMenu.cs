@@ -14,7 +14,6 @@ namespace ScuffClient.Menu
     {
         private MethodInfo m_QuickMenuInstance;
         private FieldInfo f_SelectedUser;
-        private static Color themeColor = new Color(1f, 0f, 1f);
         private QuickMenu menu;
         private Player selectedPlayer;
         private VRCPlayer selectedVRCPlayer;
@@ -34,6 +33,7 @@ namespace ScuffClient.Menu
                 {
                     selectedPlayer = PlayerManager.GetPlayer(selectedAPIUser.id);
                     selectedVRCPlayer = selectedPlayer.vrcPlayer;
+                    
                     LoadPortalButton();
                     LoadCloneButton();
                     LoadLogoutButton();
@@ -51,90 +51,109 @@ namespace ScuffClient.Menu
         
         public void LoadLogoutButton()
         {
-            logoutButton = GameObject.Find("UserInteractMenu").transform.Find("ForceLogoutButton").gameObject;
-            ColorBlock logoutColor = portalButton.GetComponent<Button>().colors;
-            logoutColor.normalColor = themeColor + new Color(0f, 0f, 0f, 0.5f);
-            logoutColor.highlightedColor = themeColor + new Color(0f, 0f, 0f, 1f);
-            logoutColor.pressedColor = themeColor;
-            logoutButton.SetActive(true);
-            logoutButton.GetComponentInChildren<Text>().text = "Logout";
-            logoutButton.GetComponent<Button>().colors = logoutColor;
-            //disable persistent button
-            logoutButton.GetComponent<Button>().onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
-            logoutButton.GetComponent<Button>().onClick.RemoveAllListeners();
-            logoutButton.GetComponent<Button>().onClick.AddListener(delegate ()
+            if (logoutButton == null)
             {
-                Exploits.TriggerIndexOutOfRange(selectedPlayer);
-            });
+                GameObject original = GameObject.Find("UserInteractMenu").transform.Find("ForceLogoutButton").gameObject;
+                Transform parent = GameObject.Find("UserInteractMenu").transform;
+                //instantiate the original button to new object
+                logoutButton = GameObject.Instantiate(original, original.transform.position, default(Quaternion), parent);
+                logoutButton.GetComponent<Button>().colors = Functions.SetThemeColor(logoutButton.GetComponent<Button>().colors);
+                logoutButton.SetActive(true);
+                logoutButton.GetComponentInChildren<Text>().text = "Logout";
+                //disable persistent button
+                logoutButton.GetComponent<Button>().onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
+                logoutButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                logoutButton.GetComponent<Button>().onClick.AddListener(delegate ()
+                {
+                    Exploits.FakeLogout(selectedPlayer);
+                });
+            }
         }
         
         public void LoadPortalButton()
         {
-            portalButton = GameObject.Find("UserInteractMenu").transform.Find("BanButton").gameObject;
-            ColorBlock portalColor = portalButton.GetComponent<Button>().colors;
-            portalColor.normalColor = themeColor + new Color(0f, 0f, 0f, 0.5f);
-            portalColor.highlightedColor = themeColor + new Color(0f, 0f, 0f, 1f);
-            portalColor.pressedColor = themeColor;
-            portalButton.SetActive(true);
-            portalButton.GetComponentInChildren<Text>().text = "Portal";
-            portalButton.GetComponent<Button>().colors = portalColor;
-            //disable persistent button
-            portalButton.GetComponent<Button>().onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
-            portalButton.GetComponent<Button>().onClick.RemoveAllListeners();
-            portalButton.GetComponent<Button>().onClick.AddListener(delegate ()
+            if (portalButton == null)
             {
-                Exploits.DropPortal(selectedPlayer);
-            });
+                GameObject original = GameObject.Find("UserInteractMenu").transform.Find("ForceLogoutButton").gameObject;
+                Transform parent = GameObject.Find("UserInteractMenu").transform;
+                //instantiate the original button to new object
+                portalButton = GameObject.Instantiate(original, original.transform.position, default(Quaternion), parent);
+                portalButton.GetComponent<Button>().colors = Functions.SetThemeColor(portalButton.GetComponent<Button>().colors);
+                portalButton.SetActive(true);
+                portalButton.GetComponentInChildren<Text>().text = "Portal";
+                //disable persistent button
+                portalButton.GetComponent<Button>().onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
+                portalButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                portalButton.GetComponent<Button>().onClick.AddListener(delegate ()
+                {
+                    Exploits.DropPortal(selectedPlayer);
+                });
+                portalButton.transform.localPosition = portalButton.transform.localPosition + new Vector3(420, 0);
+            }
         }
 
         public void LoadTeleportButton()
         {
-            teleportButton = GameObject.Find("UserInteractMenu").transform.Find("KickButton").gameObject;
-            ColorBlock teleportColor = teleportButton.GetComponent<Button>().colors;
-            teleportColor.normalColor = themeColor + new Color(0f, 0f, 0f, 0.5f);
-            teleportColor.highlightedColor = themeColor + new Color(0f, 0f, 0f, 0.5f);
-            teleportColor.pressedColor = themeColor;
-            teleportButton.SetActive(true);
-            teleportButton.GetComponentInChildren<Text>().text = "Teleport";
-            teleportButton.GetComponent<Button>().colors = teleportColor;
-            //disable persistent button
-            teleportButton.GetComponent<Button>().onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
-            teleportButton.GetComponent<Button>().onClick.RemoveAllListeners();
-            teleportButton.GetComponent<Button>().onClick.AddListener(delegate ()
+            if (teleportButton == null)
             {
-                Exploits.Teleport(selectedPlayer);
-            });
+                GameObject original = GameObject.Find("UserInteractMenu").transform.Find("ForceLogoutButton").gameObject;
+                Transform parent = GameObject.Find("UserInteractMenu").transform;
+                //instantiate the original button to new object
+                teleportButton = GameObject.Instantiate(original, original.transform.position, default(Quaternion), parent);
+                teleportButton.GetComponent<Button>().colors = Functions.SetThemeColor(teleportButton.GetComponent<Button>().colors);
+                teleportButton.SetActive(true);
+                teleportButton.GetComponentInChildren<Text>().text = "Teleport";
+                //disable persistent button
+                teleportButton.GetComponent<Button>().onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
+                teleportButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                teleportButton.GetComponent<Button>().onClick.AddListener(delegate ()
+                {
+                    Exploits.Teleport(selectedPlayer);
+                });
+                teleportButton.transform.localPosition = teleportButton.transform.localPosition + new Vector3(-420, 0);
+            }
         }
 
         public void LoadCloneButton()
         {
-            if (PlayerReflections.GetApiAvatar(selectedPlayer).releaseStatus == "public")
+            void CreateButtons(GameObject go = null)
             {
-                cloneButton = GameObject.Find("UserInteractMenu").transform.Find("WarnButton").gameObject;
-                ColorBlock publicColor = portalButton.GetComponent<Button>().colors;
-                publicColor.normalColor = themeColor + new Color(0f, 0f, 0f, 0.5f);
-                publicColor.highlightedColor = themeColor + new Color(0f, 0f, 0f, 1f);
-                publicColor.pressedColor = themeColor;
-                cloneButton.SetActive(true);
-                cloneButton.GetComponentInChildren<Text>().text = "Yoink";
-                cloneButton.GetComponent<Button>().colors = publicColor;
-                //disable persistent button
-                cloneButton.GetComponent<Button>().onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
-                cloneButton.GetComponent<Button>().onClick.RemoveAllListeners();
-                cloneButton.GetComponent<Button>().onClick.AddListener(delegate ()
+                Transform parent = GameObject.Find("UserInteractMenu").transform;
+                if (PlayerReflections.GetApiAvatar(selectedPlayer).releaseStatus == "public")
                 {
-                    Exploits.LoadAvatarFromId(PlayerReflections.GetApiAvatar(selectedPlayer).id);
-                });
-                cloneButton.GetComponent<Button>().interactable = true;
+                    if (go != null)
+                        cloneButton = GameObject.Instantiate(go, go.transform.position, default(Quaternion), parent);
+
+                    cloneButton.GetComponent<Button>().colors = Functions.SetThemeColor(cloneButton.GetComponent<Button>().colors);
+                    cloneButton.SetActive(true);
+                    cloneButton.GetComponentInChildren<Text>().text = "Yoink";
+                    //disable persistent button
+                    cloneButton.GetComponent<Button>().onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
+                    cloneButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                    cloneButton.GetComponent<Button>().onClick.AddListener(delegate ()
+                    {
+                        Exploits.LoadAvatarFromId(PlayerReflections.GetApiAvatar(selectedPlayer).id);
+                    });
+                    cloneButton.GetComponent<Button>().interactable = true;
+                }
+                else
+                {
+                    if(go != null)
+                        cloneButton = GameObject.Instantiate(go, go.transform.position, default(Quaternion), parent);
+
+                    cloneButton.SetActive(true);
+                    cloneButton.GetComponentInChildren<Text>().text = "PRIVATE";
+                    cloneButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                    cloneButton.GetComponent<Button>().interactable = false;
+                }
             }
-            else
+            if (cloneButton == null)
             {
-                cloneButton = GameObject.Find("UserInteractMenu").transform.Find("WarnButton").gameObject;
-                cloneButton.SetActive(true);
-                cloneButton.GetComponentInChildren<Text>().text = "PRIVATE";
-                cloneButton.GetComponent<Button>().onClick.RemoveAllListeners();
-                cloneButton.GetComponent<Button>().interactable = false;
+                CreateButtons(GameObject.Find("UserInteractMenu").transform.Find("ForceLogoutButton").gameObject);
+                cloneButton.transform.localPosition = cloneButton.transform.localPosition + new Vector3(840, 0);
             }
+            if(cloneButton != null)
+                CreateButtons();
         }
     }
 }
