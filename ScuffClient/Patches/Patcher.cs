@@ -44,18 +44,13 @@ namespace ScuffClient.Patches
                 Console.WriteLine("[ScuffClient]: Exception caught while patching " + e);
             }
         }
-        private static bool ConnectData(string __0, string __1)
-        {
-            Console.WriteLine(__0 + " " + __1);
-            return true;
-        }
 
         private static bool NoBlock(ref bool __result, ref ModerationManager __instance, ref string __0)
         {
             Player sender = PlayerManager.GetPlayer(__0);
 
             if (__instance.IsBlocked(__0) || __instance.IsBlockedByUser(__0))
-                sender.vrcPlayer.SetNamePlateColor(Color.red);
+                sender.vrcPlayer.SetNamePlateColor(Variables.blockedColor);
             else
                 sender.vrcPlayer.RestoreNamePlateColor();
 
@@ -81,20 +76,19 @@ namespace ScuffClient.Patches
             return Variables.antiPortal;
         }
 
-        private static bool RandomHwid(string __result)
+        private static bool RandomHwid(ref string __result)
         {
             __result = Functions.NewDeviceID();
-            return true;
+            return false;
         }
 
         private static bool SteamSpoof(byte __0, Dictionary<byte, object> __1)
         {
-            //ty azami, your version was cleaner than mine xd
             void RemoveSteamId(byte key)
             {
                 Hashtable data = (Hashtable)__1[key];
                 if (data.ContainsKey("steamUserID"))
-                    data["steamUserID"] = "0";
+                    data["steamUserID"] = !string.IsNullOrEmpty(Variables.steamId) ? Variables.steamId : "0";
             }
             if(__0 == OpCodes.SetProperties)
             {
