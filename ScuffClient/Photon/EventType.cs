@@ -12,5 +12,6 @@ namespace ScuffClient.Photon
         public const byte SendSerialize = 201;
         public const byte SendPosition = 202;
         public const byte SendTest = 206;
+        public const byte SendTransferPv = 210;
     }
 }
