@@ -11,6 +11,7 @@ namespace ScuffClient.Photon
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();
             parameters[ParameterCodes.EventCode] = eventCode;
+
             //check for correct type for eventdata relative to eventcode or else dont send (due to bans)
             if (eventData != null && CheckForCorrectType(eventCode, eventData))
                 parameters[ParameterCodes.CustomData] = eventData;
@@ -26,6 +27,7 @@ namespace ScuffClient.Photon
                     }));
                 return;
             }
+
             if(eventOptions != null && eventOptions.TargetActors != null)
                 parameters[ParameterCodes.Targets] = eventOptions.TargetActors;
 
@@ -36,6 +38,7 @@ namespace ScuffClient.Photon
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();
             Hashtable properties = new Hashtable();
+
             //add each array element to hashtable to send as properties
             foreach (KeyValuePair<object, object> kp in pair)
                 properties.Add(kp.Key, kp.Value);
@@ -78,7 +81,7 @@ namespace ScuffClient.Photon
             if (evCode == EventType.SendVoice && type is byte[])
                 return true;
 
-            if (evCode == EventType.SendEvent && type is VRC_EventLog)
+            if (evCode == EventType.SendEvent && type is byte[])
                 return true;
 
             if (evCode == EventType.SendSerialize && type is object[])
@@ -88,6 +91,9 @@ namespace ScuffClient.Photon
                 return true;
 
             if (evCode == EventType.SendTest && type is object[])
+                return true;
+
+            if (evCode == EventType.SendTransferPv && type is int[])
                 return true;
 
             return false;
@@ -109,6 +115,9 @@ namespace ScuffClient.Photon
 
             if (evCode == EventType.SendTest)
                 return "object[]";
+
+            if (evCode == EventType.SendTransferPv)
+                return "int[]";
 
             return "unknown";
         }
