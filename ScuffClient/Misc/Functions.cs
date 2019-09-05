@@ -4,12 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
 using VRC;
+using UnityEngine;
+using UnityEngine.UI;
+using ScuffClient.Patches;
+using ScuffClient.Menu;
+using Random = System.Random;
 
 namespace ScuffClient.Misc
 {
     public class Functions
     {
-        public static int GetPhotonId(Player p) => p.GetInstigatorId().GetValueOrDefault();
+        /// <summary>
+        /// passing a player returns the players id, passing null returns local player id
+        /// </summary>
+        public static int GetPhotonId(Player p = null) => p? p.GetInstigatorId().GetValueOrDefault() : PlayerManager.GetPlayer(VRC.Core.APIUser.CurrentUser.id).GetInstigatorId().GetValueOrDefault();
 
         //generate new hwid to avoid hwid bans
         public static string NewDeviceID()
@@ -33,6 +41,14 @@ namespace ScuffClient.Misc
         public static byte[] ExploitData(bool indexExploit)
         {
             return indexExploit ? new byte[0] : new byte[1950];
+        }
+
+        public static ColorBlock SetThemeColor(ColorBlock colorBlock)
+        {
+            colorBlock.normalColor = new Color(1f, 0f, 1f);
+            colorBlock.pressedColor = new Color(1f, 0f, 1f);
+            colorBlock.highlightedColor = new Color(1f, 0f, 1f, 1f);
+            return colorBlock;
         }
     }
 }
