@@ -18,7 +18,9 @@ A VRChat cheat client with functionality such as:
 
 -Teleport to mouse (Invisible Ray is emitted from screen center and upon clicking it teleports you to whatever object the ray collides with).
 
+
 #Misc
+
 -Logging out other players (Patched late 2019).
 
 --Logout exploit worked by sending 20,000 bytes repeatedly to target player through the photon networking system.
@@ -41,6 +43,7 @@ A VRChat cheat client with functionality such as:
 -Drop portals on other players, forcing them to join a different world.
 
 -Hardware ID randomizer on every HWID request from the server (This was to prevent Hardware ID bans from moderators).
+
 
 #Other
 On every patch released by the developers, their type names, method names and variable names would all be randomized.
