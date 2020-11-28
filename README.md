@@ -1,10 +1,11 @@
-### ScuffClient
-## **THIS PROJECT IS DEFUNCT AS OF MAY 2020 DUE TO INFRASTRUCTURE CHANGES BY THE VRCHAT DEV TEAM**
+### **ScuffClient**
+
+**THIS PROJECT IS DEFUNCT AS OF MAY 2020 DUE TO INFRASTRUCTURE CHANGES BY THE VRCHAT DEV TEAM**
 
 **See https://github.com/sebrandt1/CrownLoader for an up to date VRChat cheat client.**
 
 
-A VRChat cheat client with functionality such as:
+A VRChat cheat client with the following functionality:
 
 
 ## General
