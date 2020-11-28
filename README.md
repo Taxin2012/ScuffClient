@@ -31,7 +31,7 @@ A VRChat cheat client with the following functionality:
 
 - Trigger any map events for all players currently on that map. (i.e events that toggle objects on or off, events that teleport everyone to a specific location).
 
-- See players that blocked your and display their name with a red nametag (Normally you can't see players who've blocked you).
+- See players that blocked you and display their name with a red nametag (Normally you can't see players who've blocked you).
 
 - Join private worlds that you normally wouldn't be able to join.
 
